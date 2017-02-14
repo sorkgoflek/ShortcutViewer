@@ -3,9 +3,7 @@ package view;
 import com.sun.applet2.AppletParameters;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.*;
 import java.awt.*;
 
 /**
@@ -28,7 +26,8 @@ public class ShortcutCard extends JPanel {
                 "Category");
         titledBorder.setTitleJustification(TitledBorder.RIGHT);
 
-        setBorder(titledBorder);
+        setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), titledBorder));
+
 
         nameLabel = new JLabel("nameLabel");
         descriptionLabel = new JLabel("descrip4564565456456645tionLabel");
@@ -73,7 +72,7 @@ public class ShortcutCard extends JPanel {
         constraints.gridheight = h;
         constraints.gridwidth = w;
         constraints.fill = isFill ? GridBagConstraints.HORIZONTAL : GridBagConstraints.NONE;
-        constraints.insets = new Insets(0,2,0,2);
+        constraints.insets = new Insets(y == 0 ? 3 : 0, 3, y == 2 ? 3 : 0, 3);
         constraints.anchor = (x == 0) ? GridBagConstraints.WEST : GridBagConstraints.EAST;
         constraints.weightx = (x == 0) ? 0.1 : 1.0;
 
