@@ -40,8 +40,8 @@ public class KetboardHooker extends Thread {
         }
     }
 
-    public void setRun(boolean run){
-        this.run = run;
+    public void terminate(){
+        this.run = true;
     }
 
     private void onKeyPressed(GlobalKeyEvent event){

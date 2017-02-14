@@ -26,7 +26,7 @@ public class ShortcutFrame extends JFrame {
         boxLayout = new BoxLayout(parentPanel, BoxLayout.Y_AXIS);
         parentPanel.setLayout(boxLayout);
 
-        //Test
+        /*//Test
         for (int i = 0; i <5; i++) {
             JPanel sample = new JPanel();
             //sample.setSize(100,100);
@@ -43,17 +43,28 @@ public class ShortcutFrame extends JFrame {
             parentPanel.add(sample2);
 
             //panelList.add(new JPanel());
-        }
+        }*/
 
+        parentPanel.add(getCard());
+        parentPanel.add(getCard());
+       // parentPanel.add(getCard());
 
         parentPanel.setOpaque(true); // ??
 
         setContentPane(parentPanel);
+        //pack();
         setVisible(true);
     }
 
     public void dsetShortcutModelList(ArrayList<ShortcutModel> modelList) {
         this.modelList = modelList;
         parentPanel.updateUI();
+    }
+
+    private JPanel getCard(/*ShortcutModel shortcutModel*/){
+        ShortcutCard card = new ShortcutCard();
+
+
+        return card;
     }
 }
