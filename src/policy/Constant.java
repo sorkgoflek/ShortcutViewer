@@ -5,4 +5,6 @@ package policy;
  */
 public class Constant {
     public static final int FONT_DEFAULT_SIZE = 13;
+
+    public static final String SHORTCUTLIST_FILE_PATH = "ShortcutList.txt";
 }
