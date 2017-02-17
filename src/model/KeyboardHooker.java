@@ -62,7 +62,7 @@ public class KeyboardHooker extends Thread {
         String[] aa = pressingKeys.toArray(new String[]{});
 
         for (String a : aa) {
-            System.out.println("~: " + a);
+            System.out.println("remain : " + a);
         }
 
         //callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
