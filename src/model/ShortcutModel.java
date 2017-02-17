@@ -1,21 +1,23 @@
 package model;
 
+import java.util.Arrays;
+
 /**
  * Created by Drew on 2017-02-02.
  */
 public class ShortcutModel {
     private static final int MAX_KEY = 3;
-    private String key[];
+    private String keys[];
     private String description;
     private String name;
-    private String label;
+    private String category;
 
-    public String[] getKey() {
-        return key;
+    public String[] getKeys() {
+        return keys;
     }
 
-    public void setKey(String[] key) {
-        this.key = key;
+    public void setKeys(String[] keys) {
+        this.keys = keys;
     }
 
     public String getDescription() {
@@ -34,18 +36,52 @@ public class ShortcutModel {
         this.name = name;
     }
 
-    public String getLabel() {
-        return label;
+    public String getCategory() {
+        return category;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public ShortcutModel(String[] key, String description, String name, String label) {
-        this.key = key;
+    public ShortcutModel(String name, String[] keys, String description, String category) {
+        this.keys = keys;
         this.description = description;
         this.name = name;
-        this.label = label;
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "ShortcutModel{" +
+                "keys=" + Arrays.toString(keys) +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
+
+    private boolean isContainKey(String targetKey) {
+        if(keys == null){
+            return false;
+        }
+
+        for(String key : keys){
+            if(key.equals(targetKey)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isContainKeys(String[] targetKeys) {
+        for(String targetKey : targetKeys){
+            if(!isContainKey(targetKey)){
+                return false;
+            }
+        }
+
+        return true;
     }
 }
