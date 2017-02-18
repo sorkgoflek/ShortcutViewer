@@ -6,11 +6,17 @@ import java.util.Arrays;
  * Created by Drew on 2017-02-02.
  */
 public class ShortcutModel {
-    private static final int MAX_KEY = 3;
     private String keys[];
     private String description;
     private String name;
     private String category;
+
+    public ShortcutModel(String name, String[] keys, String description, String category) {
+        this.keys = keys;
+        this.description = description;
+        this.name = name;
+        this.category = category;
+    }
 
     public String[] getKeys() {
         return keys;
@@ -41,13 +47,6 @@ public class ShortcutModel {
     }
 
     public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public ShortcutModel(String name, String[] keys, String description, String category) {
-        this.keys = keys;
-        this.description = description;
-        this.name = name;
         this.category = category;
     }
 
