@@ -1,8 +1,6 @@
 package view;
 
 import controller.ShortcutController;
-import model.KeyboardHooker;
-import model.ShortcutModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,15 +24,6 @@ public class ShortcutFrame extends JFrame {
         parentPanel = new JPanel();
         parentPanel.setLayout(new FlowLayout());
 
-
-/*
-        parentPanel.add(getCard());
-        parentPanel.add(getCard());
-        // parentPanel.add(getCard());
-
-        parentPanel.setOpaque(true); // ??
-*/
-
         setContentPane(parentPanel);
         //pack();
         setVisible(true);
@@ -45,17 +34,13 @@ public class ShortcutFrame extends JFrame {
     }
 
     public void setPanelList(ArrayList<ShortcutPanel> panelList) {
-        for(ShortcutPanel panel: panelList){
-         parentPanel.add(panel);
+        parentPanel.removeAll();
+
+        for (ShortcutPanel panel : panelList) {
+            parentPanel.add(panel);
         }
+
         parentPanel.updateUI();
+        parentPanel.setOpaque(true);
     }
-
-   /* private JPanel getCard(ShortcutModel model) {
-        ShortcutPanel card = new ShortcutPanel();
-        card.setLabels(new ShortcutModel(new String[]{"Alt", "K"}, "HI", "this is name", "Win10"));
-        //card.setLabels(model);
-
-        return card;
-    }*/
 }

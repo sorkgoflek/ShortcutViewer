@@ -1,0 +1,1 @@
+Open settings dialogue@@Ctrl,Alt,S@@not@@Android Studio

@@ -60,17 +60,18 @@ public class KeyboardHooker extends Thread {
 
         printKey(event);
 
-        /*String[] aa = pressingKeys.toArray(new String[]{});
-        for (String a : aa) {
-            System.out.println("remain : " + a);
-        }*/
-
-        //callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
+        callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
     }
 
     private void onkeyReleased(GlobalKeyEvent event) {
-        //System.out.println(event);
-        pressingKeys.remove(KeyEvent.getKeyText(event.getVirtualKeyCode()));
+        pressingKeys.remove(VirtualKeyConverter.toString(event.getVirtualKeyCode()));
+
+        //printPressingKeys();
+
+        if (pressingKeys.isEmpty()) {
+            System.out.println("pressingKeys is Empty");
+            callBack.setEmptyKeys();
+        }
     }
 
     private void printKey(GlobalKeyEvent event) {
@@ -78,11 +79,20 @@ public class KeyboardHooker extends Thread {
         str += "(" + event.getVirtualKeyCode() + ") is ";
         str += VirtualKeyConverter.toString(event.getVirtualKeyCode());
 
-        System.out.println("-----------------------------");
+        System.out.println("--------------printKey-------------");
         System.out.println(str);
+    }
+
+    private void printPressingKeys() {
+        System.out.println("--------------printPressingKeys-------------");
+        for (String str : pressingKeys) {
+            System.out.println(str);
+        }
     }
 
     public interface CallBack {
         void setHookedKeys(String[] keys);
+
+        void setEmptyKeys();
     }
 }
