@@ -179,6 +179,12 @@ public class VirtualKeyConverter {
                 return "BackSpace";
             case KeyEvent.VK_BACK_QUOTE:
                 return "`";
+            case 0xbf:
+                return "/";
+            case 0xdb:
+                return "[";
+            case 0xdd:
+                return "]";
 
             default:
                 return "";
