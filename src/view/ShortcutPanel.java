@@ -66,7 +66,7 @@ public class ShortcutPanel extends JPanel {
         constraints.gridheight = h;
         constraints.gridwidth = w;
         constraints.fill = isFill ? GridBagConstraints.HORIZONTAL : GridBagConstraints.NONE;
-        constraints.insets = new Insets(y == 2 ? 3 : 0, 3, y == 2 ? 3 : 0, 3);
+        constraints.insets = new Insets(y == 2 ? 3 : 0, y == 2 ? 4 : 3, y == 2 ? 3 : 0, 3);
         constraints.anchor = (x == 0) ? GridBagConstraints.WEST : GridBagConstraints.EAST;
         constraints.weightx = (x == 0) ? 0.1 : 1.0;
 
