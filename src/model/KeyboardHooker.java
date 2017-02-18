@@ -3,6 +3,7 @@ package model;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyAdapter;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
+import util.VirtualKeyConverter;
 
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class KeyboardHooker extends Thread {
             }
         } catch (InterruptedException e) { /* nothing to do here */ } finally {
             keyboardHook.shutdownHook();
+            pressingKeys.clear();
             System.out.println("KeyboardHooker is gone!");
         }
     }
@@ -54,26 +56,30 @@ public class KeyboardHooker extends Thread {
     }
 
     private void onKeyPressed(GlobalKeyEvent event) {
-        System.out.println(event);
+        pressingKeys.add(VirtualKeyConverter.toString(event.getVirtualKeyCode()));
 
-        pressingKeys.add(KeyEvent.getKeyText(event.getVirtualKeyCode())); //Mapper 필요
+        printKey(event);
 
-        System.out.println("! " + event.toString());
-        String[] aa = pressingKeys.toArray(new String[]{});
-
+        /*String[] aa = pressingKeys.toArray(new String[]{});
         for (String a : aa) {
             System.out.println("remain : " + a);
-        }
+        }*/
 
         //callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
-
-        /*if (event.getVirtualKeyCode() == GlobalKeyEvent.VK_ESCAPE) {
-        }*/
     }
 
     private void onkeyReleased(GlobalKeyEvent event) {
-        System.out.println(event);
+        //System.out.println(event);
         pressingKeys.remove(KeyEvent.getKeyText(event.getVirtualKeyCode()));
+    }
+
+    private void printKey(GlobalKeyEvent event) {
+        String str = KeyEvent.getKeyText(event.getVirtualKeyCode());
+        str += "(" + event.getVirtualKeyCode() + ") is ";
+        str += VirtualKeyConverter.toString(event.getVirtualKeyCode());
+
+        System.out.println("-----------------------------");
+        System.out.println(str);
     }
 
     public interface CallBack {
