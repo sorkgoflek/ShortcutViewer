@@ -4,6 +4,7 @@ import controller.ShortcutController;
 import policy.Constant;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -18,20 +19,40 @@ public class ShortcutFrame extends JFrame {
 
     public ShortcutFrame() {
         initSystem();
+        initListPanel();
+        initScrollPane();
 
         setTitle("Shortcut Viewer");
         setSize(Constant.APP_WIDTH, Constant.APP_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setBackground(new Color(0, 0, 0, Constant.TRANSPARENT_VALUE));
 
-        listPanel = new JPanel();
-        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
-
-        setContentPane(listPanel);
+        setContentPane(scrollPane);
         setVisible(true);
     }
 
     private void initSystem() {
         controller = new ShortcutController(this);
+    }
+
+    private void initListPanel() {
+        listPanel = new JPanel();
+        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+        listPanel.setBackground(new Color(0, 0, 0, Constant.TRANSPARENT_VALUE));
+        listPanel.setOpaque(false);
+    }
+
+    private void initScrollPane() {
+        scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(0, 0, Constant.APP_WIDTH, Constant.APP_HEIGHT);
+
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
     }
 
     public void setPanelList(ArrayList<ShortcutPanel> panelList) {
@@ -44,13 +65,8 @@ public class ShortcutFrame extends JFrame {
             listPanel.add(panel);
         }
 
-        scrollPane = new JScrollPane(listPanel);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(0, 0, Constant.APP_WIDTH, Constant.APP_HEIGHT);
+        scrollPane.setViewportView(listPanel);
 
-        setContentPane(scrollPane);
         pack();
         setSize(getWidth() < Constant.APP_WIDTH ? Constant.APP_WIDTH : getWidth(), Constant.APP_HEIGHT);
     }
