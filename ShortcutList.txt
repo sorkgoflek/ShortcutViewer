@@ -1,1 +1,56 @@
-Open settings dialogue@@Ctrl,Alt,S@@not@@Android Studio
+Optimize Imports@@Ctrl + Alt + O@@ @@Android Studio
+Quick-fix@@Alt + Enter@@ @@Android Studio
+Rename@@Shift + F6@@ @@Android Studio
+Reformat code@@Ctrl + Alt + L@@ @@Android Studio
+Override method@@Ctrl + O@@ @@Android Studio
+Implement methods@@Ctrl + I@@ @@Android Studio
+Parameter info@@Ctrl + P@@ @@Android Studio
+Go to declaration@@Ctrl + B@@ @@Android Studio
+Go to declaration@@Ctrl + Click@@ @@Android Studio
+Search everywhere@@Shift + Shift@@ @@Android Studio
+Find in path@@Ctrl + Shift + F@@ @@Android Studio
+Replace@@Ctrl + R@@ @@Android Studio
+Replace in path@@Ctrl + Shift + R@@ @@Android Studio
+Generate code@@Alt + Insert@@ @@Android Studio
+Run with Debug mode@@Shift + F9@@ @@Android Studio
+Run@@Shift + F10@@ @@Android Studio
+Paste from history@@Ctrl + Shift + V@@ @@Android Studio
+Move Cursor to prev@@Ctrl + Alt + ←@@ @@Android Studio
+Move Cursor to next@@Ctrl + Alt + →@@ @@Android Studio
+Call hierarchy@@Ctrl + Alt + H@@ @@Android Studio
+Remove line@@Ctrl + Y@@ @@Android Studio
+Move line up@@Ctrl + Shift + ↑@@ @@Android Studio
+Move line down@@Ctrl + Shift + ↓@@ @@Android Studio
+Insert Live Template@@Ctrl + J@@ @@Android Studio
+Show usages@@Ctrl + Alt + F7@@ @@Android Studio
+Documentation lookup@@Ctrl + Q@@ @@Android Studio
+Basic code completion@@Ctrl + Space@@ @@Android Studio
+Find class@@Ctrl + N@@ @@Android Studio
+Find file@@Ctrl + Shift + N@@ @@Android Studio
+Method hierarchy@@Ctrl + Shift + H@@ @@Android Studio
+Type hierarchy@@Ctrl + H@@ @@Android Studio
+Surround with@@Ctrl + Alt + T@@ @@Android Studio
+Comment with line comment@@Ctrl + /@@Comment/uncomment with line comment@@Android Studio
+Comment with block comment@@Ctrl + Shift + /@@Comment/uncomment with block comment@@Android Studio
+Commit project to VCS@@ Ctrl + K@@ @@Android Studio
+Open VCS popup@@Alt + `@@ @@Android Studio
+Set app size@@Win + ↑@@최대화@@Windows10
+Set app size@@Win + ↓@@최소화@@Windows10
+Set app size@@Win + →@@ @@Windows10
+Set app size@@Win + ←@@ @@Windows10
+Create new desktop@@Win + Ctrl + D@@ @@Windows10
+Delete not using desktop@@Win + Ctrl + F4@@ @@Windows10
+Choose desktop@@Win + Tab@@ @@Windows10
+Call Windows menu@@Win + X@@ @@Windows10
+Lock@@Win + L@@ @@Windows10
+Run@@Win + R@@실행@@Windows10
+Look desktop@@Win + D@@바탕화면 보기@@Windows10
+Open explorer@@Win + E@@ @@Windows10
+Choose working tab@@Win + T@@ @@Windows10
+Set project@@Win + P@@화면 복제/확장 설정@@Windows10
+Go to icon tray@@Win + B@@ @@Windows10
+Open Task manager@@Ctrl + Shift + Esc@@ @@Windows10
+Record screen@@Win + Alt + R@@ @@Windows10
+Choose tab@@Ctrl + Tab@@ @@Chrome
+New tab@@Ctrl + T@@ @@Chrome
+Recover tab@@Ctrl + Shift + T@@ @@Chrome
