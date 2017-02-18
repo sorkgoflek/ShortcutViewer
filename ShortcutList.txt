@@ -30,8 +30,8 @@ Find file@@Ctrl,Shift,N@@ @@Android Studio
 Method hierarchy@@Ctrl,Shift,H@@ @@Android Studio
 Type hierarchy@@Ctrl,H@@ @@Android Studio
 Surround with@@Ctrl,Alt,T@@ @@Android Studio
-Comment with line comment@@Ctrl,/@@Comment/uncomment with line comment@@Android Studio
-Comment with block comment@@Ctrl,Shift,/@@Comment/uncomment with block comment@@Android Studio
+Comment with line comment@@Ctrl,/@@Comment/uncomment@@Android Studio
+Comment with block comment@@Ctrl,Shift,/@@Comment/uncomment@@Android Studio
 Commit project to VCS@@ Ctrl,K@@ @@Android Studio
 Open VCS popup@@Alt,`@@ @@Android Studio
 Set app size@@Win,↑@@최대화@@Windows10

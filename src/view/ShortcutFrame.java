@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class ShortcutFrame extends JFrame {
     private ShortcutController controller;
 
-    private JPanel ListPanel;
+    private JPanel listPanel;
     private JScrollPane scrollPane;
+    private int autoScrollSkipTimes;
 
     public ShortcutFrame() {
         initSystem();
@@ -22,10 +23,10 @@ public class ShortcutFrame extends JFrame {
         setSize(Constant.APP_WIDTH, Constant.APP_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ListPanel = new JPanel();
-        ListPanel.setLayout(new BoxLayout(ListPanel, BoxLayout.Y_AXIS));
+        listPanel = new JPanel();
+        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 
-        setContentPane(ListPanel);
+        setContentPane(listPanel);
         setVisible(true);
     }
 
@@ -36,30 +37,46 @@ public class ShortcutFrame extends JFrame {
     public void setPanelList(ArrayList<ShortcutPanel> panelList) {
         System.out.println("setPanelList");
 
-        ListPanel.removeAll();
+        listPanel.removeAll();
+        autoScrollSkipTimes = 0;
 
         for (ShortcutPanel panel : panelList) {
-            ListPanel.add(panel);
+            listPanel.add(panel);
         }
 
-        scrollPane = new JScrollPane(ListPanel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(0, 0, Constant.APP_WIDTH + 15, Constant.APP_HEIGHT - 37);
+        scrollPane = new JScrollPane(listPanel);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(0, 0, Constant.APP_WIDTH, Constant.APP_HEIGHT);
 
         setContentPane(scrollPane);
-
         pack();
+        setSize(getWidth() < Constant.APP_WIDTH ? Constant.APP_WIDTH : getWidth(), Constant.APP_HEIGHT);
     }
 
     public void scrollDown() {
+        //일정 시간 후에 스크롤이 내려가도록
+        if (autoScrollSkipTimes < Constant.AUTO_SCROLL_BEGIN_MAX_SKIP_TIMES) {
+            autoScrollSkipTimes++;
+            return;
+        }
+
         if (scrollPane != null) {
             System.out.println("scrollDown");
+
             JScrollBar scrollbar = scrollPane.getVerticalScrollBar();
             int prevPosition = scrollbar.getValue();
 
             if (prevPosition == scrollbar.getMaximum() - scrollbar.getVisibleAmount()) {
+                //일정 시간 후에 스크롤이 맨 위로 올라가도록
+                if (autoScrollSkipTimes < Constant.AUTO_SCROLL_END_MAX_SKIP_TIMES) {
+                    autoScrollSkipTimes++;
+                    return;
+                }
+
                 scrollbar.setValue(0);
+                autoScrollSkipTimes = 0;
             } else {
                 scrollbar.setValue(prevPosition + Constant.AUTO_SCROLL_SPEED);
             }

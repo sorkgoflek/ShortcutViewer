@@ -3,6 +3,7 @@ package model;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyAdapter;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
+import policy.Constant;
 import util.VirtualKeyConverter;
 
 import java.awt.event.KeyEvent;
@@ -42,7 +43,7 @@ public class KeyboardHooker extends Thread {
     public void run() {
         try {
             while (run) {
-                Thread.sleep(64);
+                Thread.sleep(Constant.HOOKER_SLEEP_TIME_MILLISEC);
             }
         } catch (InterruptedException e) { /* nothing to do here */ } finally {
             keyboardHook.shutdownHook();
