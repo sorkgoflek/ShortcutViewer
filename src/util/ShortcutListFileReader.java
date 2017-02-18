@@ -3,7 +3,10 @@ package util;
 import model.ShortcutModel;
 import policy.Constant;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -50,10 +53,10 @@ public class ShortcutListFileReader {
     }
 
     private static ShortcutModel getShortcutModel(String line) {
-        // name@@key,key,key@@description@@category
+        // name@@key + key + key@@description@@category
 
         String[] attr = line.split("@@");
-        String[] keys = attr[1].split(",");
+        String[] keys = attr[1].split(" + ");
 
         return new ShortcutModel(attr[0], keys, attr[2], attr[3]);
     }
