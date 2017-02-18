@@ -71,6 +71,8 @@ public class KeyboardHooker extends Thread {
         if (pressingKeys.isEmpty()) {
             System.out.println("pressingKeys is Empty");
             callBack.setEmptyKeys();
+        } else {
+            callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
         }
     }
 

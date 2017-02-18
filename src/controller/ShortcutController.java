@@ -44,6 +44,7 @@ public class ShortcutController {
 
     private void onSetHookedKeys(String[] keys) {
         if (Arrays.equals(prevKeys, keys) || !isContainModifierKey(keys)) {
+            frame.scrollDown();
             return;
         }
 

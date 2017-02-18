@@ -24,7 +24,12 @@ public class ShortcutPanelFactory {
         ShortcutPanel panel = new ShortcutPanel();
 
         panel.nameLabel.setText(model.getName());
-        panel.descriptionLabel.setText(model.getDescription());
+
+        if (model.getDescription().equals(" ")) {
+            panel.removeDescription();
+        } else {
+            panel.descriptionLabel.setText(model.getDescription());
+        }
 
         String[] keys = model.getKeys();
         String str = "";

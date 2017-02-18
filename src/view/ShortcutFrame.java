@@ -1,9 +1,9 @@
 package view;
 
 import controller.ShortcutController;
+import policy.Constant;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -12,20 +12,20 @@ import java.util.ArrayList;
 public class ShortcutFrame extends JFrame {
     private ShortcutController controller;
 
-    private JPanel parentPanel;
+    private JPanel ListPanel;
+    private JScrollPane scrollPane;
 
     public ShortcutFrame() {
         initSystem();
 
         setTitle("Shortcut Viewer");
-        setSize(300, 800);
+        setSize(Constant.APP_WIDTH, Constant.APP_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        parentPanel = new JPanel();
-        parentPanel.setLayout(new FlowLayout());
+        ListPanel = new JPanel();
+        ListPanel.setLayout(new BoxLayout(ListPanel, BoxLayout.Y_AXIS));
 
-        setContentPane(parentPanel);
-        //pack();
+        setContentPane(ListPanel);
         setVisible(true);
     }
 
@@ -34,13 +34,35 @@ public class ShortcutFrame extends JFrame {
     }
 
     public void setPanelList(ArrayList<ShortcutPanel> panelList) {
-        parentPanel.removeAll();
+        System.out.println("setPanelList");
+
+        ListPanel.removeAll();
 
         for (ShortcutPanel panel : panelList) {
-            parentPanel.add(panel);
+            ListPanel.add(panel);
         }
 
-        parentPanel.updateUI();
-        parentPanel.setOpaque(true);
+        scrollPane = new JScrollPane(ListPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(0, 0, Constant.APP_WIDTH + 15, Constant.APP_HEIGHT - 37);
+
+        setContentPane(scrollPane);
+
+        pack();
+    }
+
+    public void scrollDown() {
+        if (scrollPane != null) {
+            System.out.println("scrollDown");
+            JScrollBar scrollbar = scrollPane.getVerticalScrollBar();
+            int prevPosition = scrollbar.getValue();
+
+            if (prevPosition == scrollbar.getMaximum() - scrollbar.getVisibleAmount()) {
+                scrollbar.setValue(0);
+            } else {
+                scrollbar.setValue(prevPosition + Constant.AUTO_SCROLL_SPEED);
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ public class ShortcutListFileReader {
         // name@@key + key + key@@description@@category
 
         String[] attr = line.split("@@");
-        String[] keys = attr[1].split(" + ");
+        String[] keys = attr[1].split(",");
 
         return new ShortcutModel(attr[0], keys, attr[2], attr[3]);
     }

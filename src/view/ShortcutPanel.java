@@ -1,10 +1,12 @@
 package view;
 
-import model.ShortcutModel;
 import policy.Constant;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -12,13 +14,11 @@ import java.awt.*;
  */
 public class ShortcutPanel extends JPanel {
     public static int FONT_SIZE = Constant.FONT_DEFAULT_SIZE;
-
-    private GridBagLayout layout;
-
     public TitledBorder titledBorder;
     public JLabel nameLabel;
     public JLabel descriptionLabel;
     public JLabel keysLabel;
+    private GridBagLayout layout;
 
     public ShortcutPanel() {
         layout = new GridBagLayout();
@@ -31,21 +31,20 @@ public class ShortcutPanel extends JPanel {
 
         setBorder(new CompoundBorder(new EmptyBorder(0, 5, 5, 5), titledBorder));
 
-        nameLabel = new JLabel("nameLabel");
-        descriptionLabel = new JLabel("descrip4564565456456645tionLabel");
-        keysLabel = new JLabel("keysLabel");
+        nameLabel = new JLabel();
+        descriptionLabel = new JLabel();
+        keysLabel = new JLabel();
 
         int x, y;
         x = y = 1;
-
-        addLabel(nameLabel,
-                0, 0, 1, 1,
-                Color.blue, FONT_SIZE * 2, false
+        addLabel(keysLabel,
+                0, 0, y, x * 5,
+                Color.green, FONT_SIZE * 2, true
         );
 
-        addLabel(keysLabel,
-                0, 1, y, x * 5,
-                Color.green, FONT_SIZE * 2, true
+        addLabel(nameLabel,
+                0, 1, y, x,
+                Color.blue, FONT_SIZE * 3 / 2, false
         );
 
         addLabel(descriptionLabel,
@@ -71,5 +70,9 @@ public class ShortcutPanel extends JPanel {
         constraints.weightx = (x == 0) ? 0.1 : 1.0;
 
         add(label, constraints);
+    }
+
+    public void removeDescription() {
+        remove(descriptionLabel);
     }
 }
