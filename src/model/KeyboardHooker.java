@@ -62,6 +62,11 @@ public class KeyboardHooker extends Thread {
         printKey(event);
 
         callBack.setHookedKeys(pressingKeys.toArray(new String[]{}));
+
+        if (event.getVirtualKeyCode() == GlobalKeyEvent.VK_ESCAPE) {
+            System.out.println("pressingKeys is cleared");
+            pressingKeys.clear();
+        }
     }
 
     private void onkeyReleased(GlobalKeyEvent event) {
