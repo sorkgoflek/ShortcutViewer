@@ -4,6 +4,7 @@ import model.KeyboardHooker;
 import model.ShortcutModel;
 import policy.Constant;
 import util.ShortcutListFileReader;
+import util.ShortcutModelListSubtracter;
 import util.ShortcutPanelFactory;
 import view.ShortcutFrame;
 import view.ShortcutPanel;
@@ -58,20 +59,14 @@ public class ShortcutController {
         prevKeys = keys;
         displayShortcutSkipTimes = 0;
 
-        // 눌린 Key들을 모두 포함한 Model만 추출 후, Panel화
-        ArrayList<ShortcutModel> hookedModelList = new ArrayList<>();
-        for (ShortcutModel model : modelList) {
-            if (model.isContainKeys(keys)) {
-                hookedModelList.add(model);
-            }
-        }
-
+        ArrayList<ShortcutModel> hookedModelList = ShortcutModelListSubtracter.getHookedModelList(modelList, keys);
         frame.setPanelList(ShortcutPanelFactory.getPanelList(hookedModelList));
     }
 
     private void onSetEmptyKeys() {
         prevKeys = new String[]{};
         displayShortcutSkipTimes = 0;
+
         frame.setPanelList(new ArrayList<ShortcutPanel>());
     }
 
