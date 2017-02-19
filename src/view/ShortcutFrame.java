@@ -2,6 +2,9 @@ package view;
 
 import controller.ShortcutController;
 import policy.Constant;
+import policy.Setting;
+import view.listener.FrameDragListener;
+import view.menuitem.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,20 +18,24 @@ public class ShortcutFrame extends JFrame {
 
     private JPanel listPanel;
     private JScrollPane scrollPane;
+    private JMenuBar menuBar;
     private int autoScrollSkipTimes;
 
     public ShortcutFrame() {
         initSystem();
         initListPanel();
         initScrollPane();
+        initMenuBar();
 
+        setUndecorated(true);
         setTitle("Shortcut Viewer");
         setSize(Constant.APP_WIDTH, Constant.APP_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setBackground(new Color(0, 0, 0, Constant.TRANSPARENT_VALUE));
-
+        setBackground(new Color(0, 0, 0, Setting.TRANSPARENT_VALUE));
+        setAlwaysOnTop(true);
+        setJMenuBar(menuBar);
         setContentPane(scrollPane);
+
         setVisible(true);
     }
 
@@ -39,7 +46,7 @@ public class ShortcutFrame extends JFrame {
     private void initListPanel() {
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
-        listPanel.setBackground(new Color(0, 0, 0, Constant.TRANSPARENT_VALUE));
+        listPanel.setBackground(new Color(0, 0, 0, Setting.TRANSPARENT_VALUE));
         listPanel.setOpaque(false);
     }
 
@@ -53,6 +60,33 @@ public class ShortcutFrame extends JFrame {
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
+    }
+
+    private void initMenuBar() {
+        menuBar = new JMenuBar();
+        JMenu programMenu = new JMenu("Program");
+        JMenu settingMenu = new JMenu("Setting");
+        JMenu categoryMenu = new JMenu("Category");
+
+        ExitMenuItem exitMenuItem = new ExitMenuItem();
+        FontMenuItem fontMenuItem = new FontMenuItem();
+        BackgroundMenuItem backgroundMenuItem = new BackgroundMenuItem();
+        TransparentMenuItem transparentMenuItem = new TransparentMenuItem();
+        CategoryMenuItem categoryMenuItem = new CategoryMenuItem();
+
+        programMenu.add(exitMenuItem);
+        settingMenu.add(fontMenuItem);
+        settingMenu.add(backgroundMenuItem);
+        settingMenu.add(transparentMenuItem);
+        categoryMenu.add(categoryMenuItem);
+
+        menuBar.add(programMenu);
+        menuBar.add(settingMenu);
+        menuBar.add(categoryMenu);
+
+        FrameDragListener frameDragListener = new FrameDragListener(this);
+        menuBar.addMouseListener(frameDragListener);
+        menuBar.addMouseMotionListener(frameDragListener);
     }
 
     public void setPanelList(ArrayList<ShortcutPanel> panelList) {
@@ -69,6 +103,11 @@ public class ShortcutFrame extends JFrame {
 
         pack();
         setSize(getWidth() < Constant.APP_WIDTH ? Constant.APP_WIDTH : getWidth(), Constant.APP_HEIGHT);
+
+        /*dispose();
+        setJMenuBar(new JMenuBar());//
+        setBackground(new Color(0, 150, 0, 125));
+        setVisible(true);*/
     }
 
     public void scrollDown() {
