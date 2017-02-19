@@ -3,10 +3,7 @@ package util;
 import model.Model;
 import policy.Constant;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -17,16 +14,18 @@ public class ShortcutListFileReader {
     public static ArrayList<Model> getShortcutList() {
         ArrayList<Model> shortcutList = new ArrayList<>();
 
-        FileReader fileReader = null;
+        FileInputStream fileInputStream = null;
         BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
 
         try {
-            fileReader = new FileReader(new File(Constant.SHORTCUTLIST_FILE_PATH));
+            fileInputStream = new FileInputStream(new File(Constant.SHORTCUTLIST_FILE_PATH));
+            inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        bufferedReader = new BufferedReader(fileReader);
+        bufferedReader = new BufferedReader(inputStreamReader);
 
         while (true) {
             String line = null;

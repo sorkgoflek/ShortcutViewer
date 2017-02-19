@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Shortcut Viewer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Shortcut_Viewer_jar</output-path>
+    <root id="archive" name="Shortcut Viewer.jar">
+      <element id="module-output" name="Shortcut Viewer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/system-hook-2.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
