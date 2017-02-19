@@ -1,6 +1,6 @@
 package view;
 
-import controller.ShortcutController;
+import controller.Controller;
 import policy.Constant;
 import policy.Setting;
 import view.listener.FrameDragListener;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by Drew on 2017-02-14.
  */
 public class ShortcutFrame extends JFrame {
-    private ShortcutController controller;
+    private Controller controller;
 
     private JPanel listPanel;
     private JScrollPane scrollPane;
@@ -40,7 +40,7 @@ public class ShortcutFrame extends JFrame {
     }
 
     private void initSystem() {
-        controller = new ShortcutController(this);
+        controller = new Controller(this);
     }
 
     private void initListPanel() {

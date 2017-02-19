@@ -5,13 +5,13 @@ import java.util.Arrays;
 /**
  * Created by Drew on 2017-02-02.
  */
-public class ShortcutModel {
+public class Model {
     private String keys[];
     private String description;
     private String name;
     private String category;
 
-    public ShortcutModel(String name, String[] keys, String description, String category) {
+    public Model(String name, String[] keys, String description, String category) {
         this.keys = keys;
         this.description = description;
         this.name = name;
@@ -36,7 +36,7 @@ public class ShortcutModel {
 
     @Override
     public String toString() {
-        return "ShortcutModel{" +
+        return "Model{" +
                 "keys=" + Arrays.toString(keys) +
                 ", description='" + description + '\'' +
                 ", name='" + name + '\'' +

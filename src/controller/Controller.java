@@ -1,10 +1,10 @@
 package controller;
 
 import model.KeyboardHooker;
-import model.ShortcutModel;
+import model.Model;
 import policy.Constant;
+import util.ModelListExtractor;
 import util.ShortcutListFileReader;
-import util.ShortcutModelListSubtracter;
 import util.ShortcutPanelFactory;
 import view.ShortcutFrame;
 import view.ShortcutPanel;
@@ -15,15 +15,15 @@ import java.util.Arrays;
 /**
  * Created by Drew on 2017-02-18.
  */
-public class ShortcutController {
+public class Controller {
     private ShortcutFrame frame;
     private KeyboardHooker hooker;
 
-    private ArrayList<ShortcutModel> modelList;
+    private ArrayList<Model> modelList;
     private String[] prevKeys;
     private int displayShortcutSkipTimes;
 
-    public ShortcutController(ShortcutFrame frame) {
+    public Controller(ShortcutFrame frame) {
         this.frame = frame;
         hooker = new KeyboardHooker(new KeyboardHooker.CallBack() {
             @Override
@@ -59,7 +59,7 @@ public class ShortcutController {
         prevKeys = keys;
         displayShortcutSkipTimes = 0;
 
-        ArrayList<ShortcutModel> hookedModelList = ShortcutModelListSubtracter.getHookedModelList(modelList, keys);
+        ArrayList<Model> hookedModelList = ModelListExtractor.getHookedModelList(modelList, keys);
         frame.setPanelList(ShortcutPanelFactory.getPanelList(hookedModelList));
     }
 

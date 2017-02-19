@@ -1,6 +1,6 @@
 package util;
 
-import model.ShortcutModel;
+import model.Model;
 import policy.Constant;
 
 import java.io.BufferedReader;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class ShortcutListFileReader {
 
-    public static ArrayList<ShortcutModel> getShortcutList() {
-        ArrayList<ShortcutModel> shortcutList = new ArrayList<>();
+    public static ArrayList<Model> getShortcutList() {
+        ArrayList<Model> shortcutList = new ArrayList<>();
 
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -52,14 +52,14 @@ public class ShortcutListFileReader {
         return shortcutList;
     }
 
-    private static ShortcutModel getShortcutModel(String line) {
+    private static Model getShortcutModel(String line) {
         // name@@key + key + key@@description@@category
 
         String[] attr = line.split("@@");
         String[] keys = attr[1].split(",");
 
-        ShortcutCategoryAdder.addCategory(attr[3]);
+        CategoryAdder.addCategory(attr[3]);
 
-        return new ShortcutModel(attr[0], keys, attr[2], attr[3]);
+        return new Model(attr[0], keys, attr[2], attr[3]);
     }
 }

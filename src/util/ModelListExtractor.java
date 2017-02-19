@@ -1,6 +1,6 @@
 package util;
 
-import model.ShortcutModel;
+import model.Model;
 import policy.Setting;
 
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import java.util.ArrayList;
 /**
  * Created by Drew on 2017-02-19.
  */
-public class ShortcutModelListSubtracter {
-    public static ArrayList<ShortcutModel> getHookedModelList(ArrayList<ShortcutModel> modelList, String[] keys) {
-        ArrayList<ShortcutModel> hookedModelList = new ArrayList<>();
+public class ModelListExtractor {
+    public static ArrayList<Model> getHookedModelList(ArrayList<Model> modelList, String[] keys) {
+        ArrayList<Model> hookedModelList = new ArrayList<>();
 
-        for (ShortcutModel model : modelList) {
+        for (Model model : modelList) {
             if (Setting.SELECTED_CATEGORY.equals(Setting.CATEGORY_ALL) || Setting.SELECTED_CATEGORY.equals(model.getCategory())) {
                 if (model.isContainKeys(keys)) {
                     hookedModelList.add(model);

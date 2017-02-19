@@ -1,6 +1,6 @@
 package util;
 
-import model.ShortcutModel;
+import model.Model;
 import view.ShortcutPanel;
 
 import java.util.ArrayList;
@@ -10,17 +10,17 @@ import java.util.ArrayList;
  */
 public class ShortcutPanelFactory {
 
-    public static ArrayList<ShortcutPanel> getPanelList(ArrayList<ShortcutModel> modelList){
+    public static ArrayList<ShortcutPanel> getPanelList(ArrayList<Model> modelList) {
         ArrayList<ShortcutPanel> panelList = new ArrayList<>();
 
-        for(ShortcutModel model : modelList){
+        for (Model model : modelList) {
             panelList.add(getPanel(model));
         }
 
         return panelList;
     }
 
-    private static ShortcutPanel getPanel(ShortcutModel model) {
+    private static ShortcutPanel getPanel(Model model) {
         ShortcutPanel panel = new ShortcutPanel();
 
         panel.nameLabel.setText(model.getName());
