@@ -20,6 +20,7 @@ public class ShortcutController {
 
     private ArrayList<ShortcutModel> modelList;
     private String[] prevKeys;
+    private int displayShortcutSkipTimes;
 
     public ShortcutController(ShortcutFrame frame) {
         this.frame = frame;
@@ -37,18 +38,25 @@ public class ShortcutController {
 
         modelList = ShortcutListFileReader.getShortcutList();
         prevKeys = new String[]{};
+        displayShortcutSkipTimes = 0;
 
         hooker.setDaemon(true);
         hooker.start();
     }
 
     private void onSetHookedKeys(String[] keys) {
+        if (displayShortcutSkipTimes < Constant.DISPLAY_SHORTCUT_SKIP_TIMES) {
+            displayShortcutSkipTimes++;
+            return;
+        }
+
         if (Arrays.equals(prevKeys, keys) || !isContainModifierKey(keys)) {
             frame.scrollDown();
             return;
         }
 
         prevKeys = keys;
+        displayShortcutSkipTimes = 0;
 
         // 눌린 Key들을 모두 포함한 Model만 추출 후, Panel화
         ArrayList<ShortcutModel> hookedModelList = new ArrayList<>();
@@ -63,6 +71,7 @@ public class ShortcutController {
 
     private void onSetEmptyKeys() {
         prevKeys = new String[]{};
+        displayShortcutSkipTimes = 0;
         frame.setPanelList(new ArrayList<ShortcutPanel>());
     }
 
