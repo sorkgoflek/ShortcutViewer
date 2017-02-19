@@ -103,11 +103,6 @@ public class ShortcutFrame extends JFrame {
 
         pack();
         setSize(getWidth() < Constant.APP_WIDTH ? Constant.APP_WIDTH : getWidth(), Constant.APP_HEIGHT);
-
-        /*dispose();
-        setJMenuBar(new JMenuBar());//
-        setBackground(new Color(0, 150, 0, 125));
-        setVisible(true);*/
     }
 
     public void scrollDown() {
